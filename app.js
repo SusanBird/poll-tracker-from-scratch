@@ -1,20 +1,11 @@
 // import functions and grab DOM elements
-
-// let state
-
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
-
-  // import functions and grab DOM elements
 import { renderPastPoll } from './render-utils.js';
 
 const optionAAddButton = document.querySelector('#option-a-add');
 const optionBAddButton = document.querySelector('#option-b-add');
 const optionAUndoButton = document.querySelector('#option-a-undo');
 const optionBUndoButton = document.querySelector('#option-b-undo');
-// just like you can use `form` to style every form in css, you can use `form` to grab the first form in querySelector
+
 const form = document.querySelector('form');
 const closePollButton = document.querySelector('#close-poll');
 const questionEl = document.querySelector('#poll-question');
@@ -62,38 +53,27 @@ optionBUndoButton.addEventListener('click', () => {
     optionBVotesEl.textContent = optionBVotes;
 });
 
-// 6 lines of new stuff!!! this is how we get data from HTML forms
-// this looks like a lot. But no forms will have surprises after this. This is just what forms look like to javascript
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); // this prevents WEEEEIIIRD FORM BEHAVIOR -- no redirect, no weird stuff in the URL, no 1996 behavior
-
-    // what in the world!!
-    // new FormData is a weird function that eats an HTML form element grabbed from the DOM
-    // and it returns this weird data object
+    e.preventDefault(); 
+    
     const data = new FormData(form);
 
-    // update state
-    question = data.get('booger-question');
-    optionATitle = data.get('booger-option-a');
-    optionBTitle = data.get('booger-option-b');
+    question = data.get('input-question');
+    optionATitle = data.get('input-option-a');
+    optionBTitle = data.get('input-option-b');
 
     displayCurrentPoll();
 });
 
 closePollButton.addEventListener('click', () => {
-  // when i click the close poll button, clear out the form
-    form.reset(); // just clear the DOM
-    
-    // SAVE A COPY OF STATE
-    // then, save the old poll in an object so we can push it to an array
+    form.reset(); 
+   
     const poll = makePoll();
 
-    // push this poll obect to an array so we have a history of past polls  
     pastPollsArray.push(poll);
 
     resetState();
 
-    // reset the DOM with this new, resetted state
     displayCurrentPoll();
 
     displayList();
@@ -101,10 +81,9 @@ closePollButton.addEventListener('click', () => {
 
 function makePoll() {
     return {
-    // the key is the new key in the new object
-    // the value is our question in STATE
+
         question: question,
-      // the value is our optionATitles in STATE
+
         optionATitle: optionATitle,
         optionBTitle: optionBTitle,
         optionAVotes: optionAVotes,
@@ -113,8 +92,7 @@ function makePoll() {
 }
 
 function resetState() {
-      // RESET OUR STATE NOW WHAT WE'VE SAVED A COPY
-    // reset our state for a new question
+ 
     question = '';
     optionATitle = '';
     optionBTitle = '';
@@ -131,14 +109,11 @@ function displayCurrentPoll() {
 }
 
 function displayList() {
-    // "display a list" pattern
-    // clear out the content of the list in the DOM
+
     pastPollsEl.textContent = '';
 
-    // for each item
     for (let pastPoll of pastPollsArray) {
-      // make some stuff
-      // when you create a DOM element, lets call that RENDER
+
         const pollEl = renderPastPoll(pastPoll);
 
         pastPollsEl.append(pollEl);
