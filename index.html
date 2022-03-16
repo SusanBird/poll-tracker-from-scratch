@@ -14,8 +14,63 @@
 
 <body>
     <main>
-
-        </section>
+        <section class="main-section">
+            <div class="top">
+                <div class="left">
+                    <form>
+                        <label>
+                            Question
+                            <input name="booger-question" />
+                        </label>
+                        <label>
+                            Option A
+                            <input name="booger-option-a" />
+                        </label>
+                        <label>
+                            Option B
+                            <input name="booger-option-b" />
+                        </label>
+                        
+                        <button>Start Poll</button>
+                    </form>
+                    <div>
+                        <div>
+                            <div>
+                                <button id="option-a-add"> Vote option A</button>
+                                <button id="option-b-add"> Vote option B</button>
+                            </div>
+                            <div>
+                                <button id="option-a-undo"> Undo option A</button>
+                                <button id="option-b-undo"> Undo option B</button>
+                            </div>
+                        </div>
+                        <button id="close-poll">Close poll</button>
+                    </div>
+                    </div>
+                    <div class="right">
+                        <p>Current Poll</p>
+                        <p id="poll-question"></p>
+                        <div class="options">
+                            <div id="option-a">
+                                <p id="option-a-title"></p>
+                                <p id="option-a-votes"></p>
+                            </div>
+                            <div id="option-b">
+                                <p id="option-b-title"></p>
+                                <p id="option-b-votes"></p>
+                            </div>                   
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <h3>Past polls</h3>
+                    <div class="past-polls">
+    
+                    </div>
+                </div>
+            </div>
+    
+            </section>
     </main>
     <script type="module" src="./app.js"></script>
 </body>
